@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XML>
+<!-- 레이아웃에 대한 선언 -->
+<decorators defaultdir="/WEB-INF/views/decorator">
+	<decorator name="main" page="default_decorator.jsp">
+		<pattern>/board/*</pattern>
+		<pattern>/member/*</pattern>
+		<pattern>/notice/*</pattern>
+		<pattern>/message/*</pattern>
+		<pattern>/error/*</pattern>
+	</decorator>
+	
+<!-- 	<decorator name="admin" page="admin_decorator.jsp"> -->
+<!-- 		<pattern>/admin/*</pattern> -->
+<!-- 	</decorator> -->
+
+</decorators>
