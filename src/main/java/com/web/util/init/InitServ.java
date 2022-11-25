@@ -39,5 +39,5 @@ public class InitServ extends HttpServlet {
 		// System.out.println(Beans.getService("/board/list.jsp"));
 		System.out.println("객체 생성 완료");
 	}
-
+	
 }
