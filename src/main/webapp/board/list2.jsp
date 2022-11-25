@@ -2,23 +2,12 @@
 <%@ page import="com.web.main.exe.Beans" %>
 <%@ page import="com.web.main.exe.Service" %>
 <%@ page import="com.web.main.exe.Execution" %>
-<%@ page import="net.webjjang.util.PageObject " %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="pageNav" tagdir="/WEB-INF/tags"%>
 <%
-// 페이지 객체 생성
-PageObject pageObject = new PageObject();
-// 넘어오는 페이지와 한 페이지에 표시할 데이터 받기
-String pageStr = request.getParameter("page");
-String perPageNumStr = request.getParameter("perPageNum");
-// 페이지와 한 페이지에 표시할 데이터가 넘어온 경우 바꾸기
-if (pageStr != null) pageObject.setPage(Integer.parseInt(pageStr));
-if (perPageNumStr != null) pageObject.setPerPageNum(Integer.parseInt(pageStr));
 String key = request.getServletPath();
 // 데이터를 가져와서 request에 담기
-request.setAttribute("list", Execution.execute(key, pageObject));
-// 페이지 처리를 위해서 pageObject를 request에 담아놓기
-request.setAttribute("pageObject", pageObject);
+request.setAttribute("list", Execution.execute(key, null));
+
 %>
 <!DOCTYPE html>
 <html>
@@ -67,9 +56,6 @@ $(function(){
 			<td>${vo.hit }</td>
 		</tr>
 	</c:forEach>
-	<c:if test="${pageObject.totalRow > pageObject.perPageNum }">
-		<pageNav:pageNav endPage="${pageObject.endPage }" totalPage="${pageObject.totalPage }" startPage="${pageObject.startPage }" page="${pageObject.page }"></pageNav:pageNav>
-	</c:if>
 	<tr>
 		<td colspan="5">
 			<a href="writeForm.jsp" class="btn btn-default">글쓰기</a>
