@@ -13,7 +13,7 @@ String pageStr = request.getParameter("page");
 String perPageNumStr = request.getParameter("perPageNum");
 // 페이지와 한 페이지에 표시할 데이터가 넘어온 경우 바꾸기
 if (pageStr != null) pageObject.setPage(Integer.parseInt(pageStr));
-if (perPageNumStr != null) pageObject.setPerPageNum(Integer.parseInt(pageStr));
+if (perPageNumStr != null) pageObject.setPerPageNum(Integer.parseInt(perPageNumStr));
 String key = request.getServletPath();
 // 데이터를 가져와서 request에 담기
 request.setAttribute("list", Execution.execute(key, pageObject));
@@ -52,7 +52,7 @@ $(function(){
 <h1>게시판 리스트</h1>
 <table class="table">
 	<tr>
-		<th>글번호</th>
+		<th>글 번호</th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>작성일</th>
@@ -68,7 +68,11 @@ $(function(){
 		</tr>
 	</c:forEach>
 	<c:if test="${pageObject.totalRow > pageObject.perPageNum }">
-		<pageNav:pageNav endPage="${pageObject.endPage }" totalPage="${pageObject.totalPage }" startPage="${pageObject.startPage }" page="${pageObject.page }"></pageNav:pageNav>
+	<tr>
+		<td>
+			<pageNav:pageNav endPage="${pageObject.endPage }" totalPage="${pageObject.totalPage }" startPage="${pageObject.startPage }" page="${pageObject.page }"></pageNav:pageNav>
+		</td>
+	</tr>
 	</c:if>
 	<tr>
 		<td colspan="5">
